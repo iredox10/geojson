@@ -11,6 +11,13 @@
         height: 100vh;
         width: 100vw;
       }
+      .hospital-marker {
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 6px;
+      text-align: center;
+    }
     </style>
   </head>
   <body>
@@ -19,7 +26,6 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <script>
-
       var map = L.map("map").setView([0, 0], 2);
 
       // Define a function to set the style based on the "lga_code" property
@@ -103,44 +109,128 @@
       L.geoJSON(jigawa_wards, {
         onEachFeature: function (feature, layer) {
           if (feature.properties && feature.properties.ward_name) {
-          feature.properties.lga_code == '18030' ?  feature.properties.lga_name = 'sule tankarkar': ''
-          feature.properties.lga_code == '18016' ?  feature.properties.lga_name = 'gagarawa': ''
-          feature.properties.lga_code == '18022' ?  feature.properties.lga_name = 'Birnin Kudu': ''
-          feature.properties.lga_code == '18001' ?  feature.properties.lga_name = 'Kaugama': ''
-          feature.properties.lga_code == '18018' ?  feature.properties.lga_name = 'Buji': ''
-          feature.properties.lga_code == '18009' ?  feature.properties.lga_name = 'Gwiwa': ''
-          feature.properties.lga_code == '18013' ?  feature.properties.lga_name = 'Auyo': ''
-          feature.properties.lga_code == '18008' ?  feature.properties.lga_name = 'Gwaram': ''
-          feature.properties.lga_code == '18014' ?  feature.properties.lga_name = 'Miga': ''
-          feature.properties.lga_code == '18021' ?  feature.properties.lga_name = 'Birniwa': ''
-          feature.properties.lga_code == '18012' ?  feature.properties.lga_name = 'Dutse': ''
-          feature.properties.lga_code == '18010' ?  feature.properties.lga_name = 'Kazaure': ''
-          feature.properties.lga_code == '18025' ?  feature.properties.lga_name = 'Kiyawa': ''
-          feature.properties.lga_code == '18015' ?  feature.properties.lga_name = 'Roni': ''
-          feature.properties.lga_code == '18007' ?  feature.properties.lga_name = 'Kiri Kasama': ''
-          feature.properties.lga_code == '18004' ?  feature.properties.lga_name = 'Babura': ''
-          feature.properties.lga_code == '18005' ?  feature.properties.lga_name = 'Guri': ''
-          feature.properties.lga_code == '18002' ?  feature.properties.lga_name = 'Taura': ''
-          feature.properties.lga_code == '18011' ?  feature.properties.lga_name = 'Hadejia': ''
-          feature.properties.lga_code == '18022' ?  feature.properties.lga_name = 'Birnin Kudi': ''
-          feature.properties.lga_code == '18001' ?  feature.properties.lga_name = 'Kaugama': ''
-          feature.properties.lga_code == '18009' ?  feature.properties.lga_name = 'Gwiwa': ''
-          feature.properties.lga_code == '18027' ?  feature.properties.lga_name = 'Kafin Hausa': ''
-
-
-
+            feature.properties.lga_code == "18030"
+              ? (feature.properties.lga_name = "sule tankarkar")
+              : "";
+            feature.properties.lga_code == "18016"
+              ? (feature.properties.lga_name = "gagarawa")
+              : "";
+            feature.properties.lga_code == "18022"
+              ? (feature.properties.lga_name = "Birnin Kudu")
+              : "";
+            feature.properties.lga_code == "18001"
+              ? (feature.properties.lga_name = "Kaugama")
+              : "";
+            feature.properties.lga_code == "18018"
+              ? (feature.properties.lga_name = "Buji")
+              : "";
+            feature.properties.lga_code == "18009"
+              ? (feature.properties.lga_name = "Gwiwa")
+              : "";
+            feature.properties.lga_code == "18013"
+              ? (feature.properties.lga_name = "Auyo")
+              : "";
+            feature.properties.lga_code == "18008"
+              ? (feature.properties.lga_name = "Gwaram")
+              : "";
+            feature.properties.lga_code == "18014"
+              ? (feature.properties.lga_name = "Miga")
+              : "";
+            feature.properties.lga_code == "18021"
+              ? (feature.properties.lga_name = "Birniwa")
+              : "";
+            feature.properties.lga_code == "18012"
+              ? (feature.properties.lga_name = "Dutse")
+              : "";
+            feature.properties.lga_code == "18010"
+              ? (feature.properties.lga_name = "Kazaure")
+              : "";
+            feature.properties.lga_code == "18025"
+              ? (feature.properties.lga_name = "Kiyawa")
+              : "";
+            feature.properties.lga_code == "18015"
+              ? (feature.properties.lga_name = "Roni")
+              : "";
+            feature.properties.lga_code == "18007"
+              ? (feature.properties.lga_name = "Kiri Kasama")
+              : "";
+            feature.properties.lga_code == "18004"
+              ? (feature.properties.lga_name = "Babura")
+              : "";
+            feature.properties.lga_code == "18005"
+              ? (feature.properties.lga_name = "Guri")
+              : "";
+            feature.properties.lga_code == "18002"
+              ? (feature.properties.lga_name = "Taura")
+              : "";
+            feature.properties.lga_code == "18011"
+              ? (feature.properties.lga_name = "Hadejia")
+              : "";
+            feature.properties.lga_code == "18022"
+              ? (feature.properties.lga_name = "Birnin Kudi")
+              : "";
+            feature.properties.lga_code == "18001"
+              ? (feature.properties.lga_name = "Kaugama")
+              : "";
+            feature.properties.lga_code == "18009"
+              ? (feature.properties.lga_name = "Gwiwa")
+              : "";
+            feature.properties.lga_code == "18027"
+              ? (feature.properties.lga_name = "Kafin Hausa")
+              : "";
+            feature.properties.lga_code == "18020"
+              ? (feature.properties.lga_name = "Ringim")
+              : "";
+            feature.properties.lga_code == "18001"
+              ? (feature.properties.lga_name = "Kaugama")
+              : "";
+            feature.properties.lga_code == "18017"
+              ? (feature.properties.lga_name = "Malam Madori")
+              : "";
+            feature.properties.lga_code == "18024"
+              ? (feature.properties.lga_name = "Garki")
+              : "";
+            feature.properties.lga_code == "18019"
+              ? (feature.properties.lga_name = "Yankwashi")
+              : "";
+            feature.properties.lga_code == "18019"
+              ? (feature.properties.lga_name = "Yankwashi")
+              : "";
+            feature.properties.lga_code == "18023"
+              ? (feature.properties.lga_name = "Maigatari")
+              : "";
+            feature.properties.lga_code == "18026"
+              ? (feature.properties.lga_name = "Jahun")
+              : "";
             const toolTip = `<b style="font-size: 1.3rem; text-transform:capitalize">ward name:<b> ${feature.properties.ward_name} <br />
                          <b>lga code: <b>${feature.properties.lga_code} <br />
                           <b> lga name <b> ${feature.properties.lga_name}`;
             layer.bindTooltip(toolTip);
           }
-          if(feature.properties.lga_code == '18030'){
-            feature.properties.lga_name == 'sule tankarkar'
+
+          feature.properties.ward_code == "JI0709"
+            ? (feature.properties.hospitals = 6)
+            : "";
+          feature.properties.ward_code == "JI0708"
+            ? (feature.properties.hospitals = 3)
+            : "";
+            feature.properties.ward_code == "JI0705"
+            ? (feature.properties.hospitals = 10)
+            : "";
+          // Add a marker with the hospital count
+          if (feature.properties.hospitals > 0) {
+            var hospitalIcon = L.divIcon({
+              className: "hospital-marker",
+              iconSize: [30, 30],
+              iconAnchor: [15, 15],
+              html: feature.properties.hospitals.toString(),
+            });
+            var marker = L.marker(layer.getBounds().getCenter(),{ icon: hospitalIcon })
+              .bindPopup("Hospitals: " + feature.properties.hospitals)
+              .addTo(map);
           }
-          console.log(feature.properties)
         },
         style: style,
-        
       }).addTo(map);
     </script>
   </body>
