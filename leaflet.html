@@ -12,12 +12,28 @@
         width: 100vw;
       }
       .hospital-marker {
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      padding: 6px;
-      text-align: center;
-    }
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        padding: 6px;
+        text-align: center;
+      }
+      .secondary-healthcare-marker{
+        background-color: green;
+        color: white;
+        /* border-radius: 50%; */
+        padding: 10px;
+        text-align: center;
+      }
+
+      .primary-healthcare-marker{
+        background-color: yellow;
+        color: white;
+        border-radius: 50%;
+        padding: 10px;
+        text-align: center;
+        color: black;
+      }
     </style>
   </head>
   <body>
@@ -208,13 +224,19 @@
             layer.bindTooltip(toolTip);
           }
 
-          feature.properties.ward_code == "JI0709"
-            ? (feature.properties.hospitals = 6)
-            : "";
+          if (feature.properties.ward_code == "JI0709") {
+            feature.properties.hospitals = 19;
+            feature.properties.primaryHealthCares = 25;
+            feature.properties.secondaryHealthCares = 30;
+          }
+
+          // feature.properties.ward_code == "JI0709"
+          //   ? (feature.properties.hospitals = 6)
+          //   : "";
           feature.properties.ward_code == "JI0708"
             ? (feature.properties.hospitals = 3)
             : "";
-            feature.properties.ward_code == "JI0705"
+          feature.properties.ward_code == "JI0705"
             ? (feature.properties.hospitals = 10)
             : "";
           // Add a marker with the hospital count
@@ -225,10 +247,48 @@
               iconAnchor: [15, 15],
               html: feature.properties.hospitals.toString(),
             });
-            var marker = L.marker(layer.getBounds().getCenter(),{ icon: hospitalIcon })
+            var marker = L.marker(layer.getBounds().getCenter(), {
+              icon: hospitalIcon,
+            })
               .bindPopup("Hospitals: " + feature.properties.hospitals)
               .addTo(map);
           }
+          if (feature.properties.secondaryHealthCares > 0) {
+            var secondaryHealthCareIcon = L.divIcon({
+              className: "secondary-healthcare-marker",
+              iconSize: [20, 20],
+              iconAnchor: [-30, -30],
+              html: feature.properties.secondaryHealthCares.toString(),
+            });
+            var secondaryHealthCareMarker = L.marker(
+              layer.getBounds().getCenter(),
+              { icon: secondaryHealthCareIcon }
+            )
+              .bindPopup(
+                "Secondary Health Care Centers: " +
+                  feature.properties.secondaryHealthCares
+              )
+              .addTo(map);
+          }
+
+          if (feature.properties.primaryHealthCares > 0) {
+            var secondaryHealthCareIcon = L.divIcon({
+              className: "primary-healthcare-marker",
+              iconSize: [20, 20],
+              iconAnchor: [60, 60],
+              html: feature.properties.primaryHealthCares.toString(),
+            });
+            var secondaryHealthCareMarker = L.marker(
+              layer.getBounds().getCenter(),
+              { icon: secondaryHealthCareIcon }
+            )
+              .bindPopup(
+                "Secondary Health Care Centers: " +
+                  feature.properties.primaryHealthCares
+              )
+              .addTo(map);
+          }
+
         },
         style: style,
       }).addTo(map);
