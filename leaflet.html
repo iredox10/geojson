@@ -43,10 +43,12 @@
 
     <script>
       var map = L.map("map").setView([0, 0], 2);
-
+      
       // Define a function to set the style based on the "lga_code" property
       function style(feature) {
         var lgaCode = feature.properties.lga_code;
+        // var lgaCode = feature.properties.lga_code;
+        console.log(lgaCode)
         // Customize the colors based on your requirements
         return {
           fillColor: getColor(lgaCode),
@@ -122,8 +124,9 @@
       }
 
       // Add GeoJSON data to the map
-      L.geoJSON(jigawa_wards, {
+      L.geoJSON(jigawaWards, {
         onEachFeature: function (feature, layer) {
+          console.log(feature)
           if (feature.properties && feature.properties.ward_name) {
             feature.properties.lga_code == "18030"
               ? (feature.properties.lga_name = "sule tankarkar")

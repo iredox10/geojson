@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Properties to Wards</title>
+</head>
+<body>
+  <h2>Add Properties to Wards</h2>
+  <form id="addWardForm">
+    <div>
+      <label for="wardName">Ward Name:</label>
+      <input type="text" id="wardName" name="wardName" required>
+    </div>
+    <div>
+      <label for="wardId">Ward ID:</label>
+      <input type="text" id="wardId" name="wardId" required>
+    </div>
+    <div id="propertiesSection">
+      <!-- Dynamic columns for properties -->
+    </div>
+    <button type="button" onclick="addPropertyColumn()">Add Property Column</button>
+    <button type="button" onclick="addWardWithProperties()">Add Ward with Properties</button>
+  </form>
+
+  <script>
+    function addPropertyColumn() {
+      const propertiesSection = document.getElementById('propertiesSection');
+      
+      const propertyColumn = document.createElement('div');
+      propertyColumn.className = 'propertyColumn';
+
+      const propertyNameLabel = document.createElement('label');
+      propertyNameLabel.textContent = 'Property Name:';
+      const propertyNameInput = document.createElement('input');
+      propertyNameInput.type = 'text';
+      propertyNameInput.className = 'propertyName';
+      propertyNameInput.name = 'propertyName';
+
+      const propertyValueLabel = document.createElement('label');
+      propertyValueLabel.textContent = 'Property Value:';
+      const propertyValueInput = document.createElement('input');
+      propertyValueInput.type = 'text';
+      propertyValueInput.className = 'propertyValue';
+      propertyValueInput.name = 'propertyValue';
+
+      propertyColumn.appendChild(propertyNameLabel);
+      propertyColumn.appendChild(propertyNameInput);
+      propertyColumn.appendChild(propertyValueLabel);
+      propertyColumn.appendChild(propertyValueInput);
+
+      propertiesSection.appendChild(propertyColumn);
+    }
+
+    async function addWardWithProperties() {
+      const wardName = document.getElementById('wardName').value;
+      const wardId = document.getElementById('wardId').value;
+
+      const properties = [];
+
+      const propertyColumns = document.querySelectorAll('.propertyColumn');
+      propertyColumns.forEach(column => {
+        const propertyName = column.querySelector('.propertyName').value;
+        const propertyValue = column.querySelector('.propertyValue').value;
+
+        if (propertyName && propertyValue) {
+          properties.push({ propertyName, propertyValue });
+        }
+      });
+
+      const response = await fetch('/addProperty', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ wards: [{ wardName, wardId, properties }] }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(data.message);
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    }
+  </script>
+</body>
+</html>
