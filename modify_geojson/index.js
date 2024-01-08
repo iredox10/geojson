@@ -42,7 +42,7 @@ Papa.parse(csvData, {
       if (matchingWard) {
         // Add properties to the feature based on the matching ward
         feature.properties.ward_id = matchingWard.ward_id;
-        feature.properties.additionalProperty = matchingWard.additionalProperty;
+        feature.properties.city_id = matchingWard.city_id;
       }
 
       return feature;
